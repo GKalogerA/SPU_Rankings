@@ -128,7 +128,7 @@ def FTE_Count(a):
 
        days.append(tot)
 
-   for i in range(N0):
+    for i in range(N0):
 
        if data0[i][7] in set_AH:
            AH.append(data0[i][14]); AH_FTE.append(data0[i][13])
@@ -324,6 +324,7 @@ st.download_button(
     file_name="THE_results.xlsx",
     mime="application/vnd.ms-excel"
 )
+
 
 
 
