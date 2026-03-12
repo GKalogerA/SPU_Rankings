@@ -97,7 +97,7 @@ def FTE_Count(a):
 # Main calculation
 # -----------------------
 
-   for i in range(N0):
+    for i in range(N0):
 
        df_start=datetime.datetime.strptime(data0[i][3],"%m/%d/%Y")
        df_end=datetime.datetime.strptime(data0[i][4],"%m/%d/%Y")
@@ -324,6 +324,7 @@ st.download_button(
     file_name="THE_results.xlsx",
     mime="application/vnd.ms-excel"
 )
+
 
 
 
