@@ -8,6 +8,27 @@ st.title("ELKE FTE Analysis Tool")
 
 st.write("Upload the required CSV files to compute FTE statistics.")
 
+# -----------------------
+# Functions
+# -----------------------
+
+def FTE_Count_QS(a):
+    FT=a.count(1)
+    PT=a.count(0)
+    return FT+PT/3
+
+def FTE_Count_GRUP(a,b):
+    FT=a.count(1)
+    PT=np.zeros(len(a))
+    for i in range(len(a)):
+        PT[i]=(1-a[i])*b[i]
+    return FT+sum(PT)
+
+def FTE_Count(a):
+    if a>=0.75:
+        return 1
+    return 0
+
 # Upload files
 fte_file = st.file_uploader("Upload FTE File", type="csv")
 research_file = st.file_uploader("Upload Research Projects File", type="csv")
@@ -70,27 +91,6 @@ if database0 is not None:
    date_start = datetime.datetime(2023,9,1)
    date_end = datetime.datetime(2024,8,31)
    days=[]
-
-# -----------------------
-# Functions
-# -----------------------
-
-    def FTE_Count_QS(a):
-        FT=a.count(1)
-        PT=a.count(0)
-        return FT+PT/3
-
-    def FTE_Count_GRUP(a,b):
-        FT=a.count(1)
-        PT=np.zeros(len(a))
-        for i in range(len(a)):
-            PT[i]=(1-a[i])*b[i]
-        return FT+sum(PT)
-
-    def FTE_Count(a):
-        if a>=0.75:
-            return 1
-        return 0
 
 # -----------------------
 # Main calculation
@@ -325,6 +325,7 @@ st.download_button(
     file_name="THE_results.xlsx",
     mime="application/vnd.ms-excel"
 )
+
 
 
 
