@@ -97,60 +97,56 @@ if database0 is not None:
 # -----------------------
 
     for i in range(N0):
-       df_start=datetime.datetime.strptime(data0[i][3],"%m/%d/%Y")
-       df_end=datetime.datetime.strptime(data0[i][4],"%m/%d/%Y")
-       x=np.timedelta64(df_start-date_start,"D").astype(int)
-       y=np.timedelta64(date_end-df_end,"D").astype(int)
-       tot=np.timedelta64(df_end-df_start,"D").astype(int)
-       check1=np.timedelta64(df_end-date_start,"D").astype(int)
-       check2=np.timedelta64(df_start-date_end,"D").astype(int)
-       duration = 1 if data0[i][11] <= 12 else data0[i][11]/12
-
-       if x>=0 and y<=0:
-           day=(365-x)
-       elif x>=0 and y>0:
+        df_start=datetime.datetime.strptime(data0[i][3],"%m/%d/%Y")
+        df_end=datetime.datetime.strptime(data0[i][4],"%m/%d/%Y")
+        x=np.timedelta64(df_start-date_start,"D").astype(int)
+        y=np.timedelta64(date_end-df_end,"D").astype(int)
+        tot=np.timedelta64(df_end-df_start,"D").astype(int)
+        check1=np.timedelta64(df_end-date_start,"D").astype(int)
+        check2=np.timedelta64(df_start-date_end,"D").astype(int)
+        duration = 1 if data0[i][11] <= 12 else data0[i][11]/12
+        if x>=0 and y<=0:
+            day=(365-x)
+        elif x>=0 and y>0:
            day=tot
-       elif x<0 and y>0:
+        elif x<0 and y>0:
            day=np.timedelta64(df_end-date_start,"D").astype(int)
-       elif x<0 and y<0:
+        elif x<0 and y<0:
            day=365
-       elif check1<0 or check2>0:
+        elif check1<0 or check2>0:
            day=0
-
-       data0[i][13]=data0[i][10]/(data0[i][9]*1720*duration)*(day/365)
-       data0[i][15]=day
-       data0[i][14]=FTE_Count(data0[i][13])
-
-       days.append(tot)
+        data0[i][13]=data0[i][10]/(data0[i][9]*1720*duration)*(day/365)
+        data0[i][15]=day
+        data0[i][14]=FTE_Count(data0[i][13])
+        days.append(tot)
 
     for i in range(N0):
+        if data0[i][7] in set_AH:
+            AH.append(data0[i][14]); AH_FTE.append(data0[i][13])
 
-       if data0[i][7] in set_AH:
-           AH.append(data0[i][14]); AH_FTE.append(data0[i][13])
+        if data0[i][7] in set_CH:
+            CH.append(data0[i][14]); CH_FTE.append(data0[i][13])
 
-       if data0[i][7] in set_CH:
-           CH.append(data0[i][14]); CH_FTE.append(data0[i][13])
+        if data0[i][7] in set_LS:
+            LS.append(data0[i][14]); LS_FTE.append(data0[i][13])
 
-       if data0[i][7] in set_LS:
-           LS.append(data0[i][14]); LS_FTE.append(data0[i][13])
-
-       if data0[i][7] in set_EN:
+        if data0[i][7] in set_EN:
            EN.append(data0[i][14]); EN_FTE.append(data0[i][13])
 
-       if data0[i][7] in set_CS:
+        if data0[i][7] in set_CS:
            CS.append(data0[i][14]); CS_FTE.append(data0[i][13])
 
-       if data0[i][7] in set_PS:
+        if data0[i][7] in set_PS:
            PS.append(data0[i][14]); PS_FTE.append(data0[i][13])
 
-       if data0[i][7] in set_BS:
+        if data0[i][7] in set_BS:
            BS.append(data0[i][14]); BS_FTE.append(data0[i][13])
 
-       if data0[i][7] in set_ED:
+        if data0[i][7] in set_ED:
            ED.append(data0[i][14]); ED_FTE.append(data0[i][13])
 
-       TOT.append(data0[i][14])
-       TOT_FTE.append(data0[i][13])
+        TOT.append(data0[i][14])
+        TOT_FTE.append(data0[i][13])
 
 if database1 is None:
     uu = np.zeros(10)
@@ -325,6 +321,7 @@ st.download_button(
     file_name="THE_results.xlsx",
     mime="application/vnd.ms-excel"
 )
+
 
 
 
