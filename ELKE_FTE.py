@@ -24,12 +24,17 @@ database2 = pd.read_csv(industry_file, encoding="utf-8")
 
 df0 = pd.DataFrame(database0)
 data0 = np.array(df0)
-
+df1=pd.DataFrame(database1)
+data1=np.array(df1)
+df2=pd.DataFrame(database2)
+data2=np.array(df2)
 N0 = len(np.transpose(data0)[0])
+
 n1=len(data1[0])#Πλήθος κελιών
 N1=len(np.transpose(data1)[0])#Πλήθος έργων
 n2=len(data2[0])#Πλήθος κελιών
 N2=len(np.transpose(data2)[0])#Πλήθος έργων
+
 date_start = datetime.datetime(2023,9,1)
 date_end = datetime.datetime(2024,8,31)
 
@@ -315,6 +320,7 @@ st.download_button(
     file_name="THE_results.xlsx",
     mime="application/vnd.ms-excel"
 )
+
 
 
 
