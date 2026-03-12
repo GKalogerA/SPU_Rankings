@@ -157,6 +157,12 @@ def FTE_Count(a):
        TOT.append(data0[i][14])
        TOT_FTE.append(data0[i][13])
 
+if database1 is None:
+    uu = np.zeros(10)
+
+if database2 is None:
+    vv = np.zeros(10)
+
 if database1 is not None:
    df1=pd.DataFrame(database1)
    data1=np.array(df1)
@@ -324,6 +330,7 @@ st.download_button(
     file_name="THE_results.xlsx",
     mime="application/vnd.ms-excel"
 )
+
 
 
 
