@@ -4,7 +4,7 @@ import numpy as np
 import datetime
 from io import BytesIO
 
-st.title("ELKE FTE Analysis Tool")
+st.title("ELKE Rankings Analysis Tool")
 st.write("Upload the required CSV files to compute FTE statistics.")
 
 # Upload files
@@ -287,3 +287,4 @@ data=buffer,
 file_name="THE_results.xlsx",
 mime="application/vnd.ms-excel"
 )
+
