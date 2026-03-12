@@ -13,9 +13,9 @@ fte_file = st.file_uploader("Upload FTE File", type="csv")
 research_file = st.file_uploader("Upload Research Projects File", type="csv")
 industry_file = st.file_uploader("Upload Industry Projects File", type="csv")
 
-#if not all([fte_file, research_file, industry_file]):
- #   st.info("Please upload all three files to continue.")
-  #  st.stop()
+if not all([fte_file, research_file, industry_file]):
+   st.info("Please upload all three files to continue.")
+   st.stop()
 
 # Load data
 database0 = pd.read_csv(fte_file, encoding="utf-8")
@@ -320,6 +320,7 @@ st.download_button(
     file_name="THE_results.xlsx",
     mime="application/vnd.ms-excel"
 )
+
 
 
 
