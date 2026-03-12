@@ -98,17 +98,13 @@ def FTE_Count(a):
 # -----------------------
 
     for i in range(N0):
-
        df_start=datetime.datetime.strptime(data0[i][3],"%m/%d/%Y")
        df_end=datetime.datetime.strptime(data0[i][4],"%m/%d/%Y")
-
        x=np.timedelta64(df_start-date_start,"D").astype(int)
        y=np.timedelta64(date_end-df_end,"D").astype(int)
        tot=np.timedelta64(df_end-df_start,"D").astype(int)
-
        check1=np.timedelta64(df_end-date_start,"D").astype(int)
        check2=np.timedelta64(df_start-date_end,"D").astype(int)
-
        duration = 1 if data0[i][11] <= 12 else data0[i][11]/12
 
        if x>=0 and y<=0:
@@ -330,6 +326,7 @@ st.download_button(
     file_name="THE_results.xlsx",
     mime="application/vnd.ms-excel"
 )
+
 
 
 
